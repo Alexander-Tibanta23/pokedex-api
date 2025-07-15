@@ -1,0 +1,22 @@
+/* ========================================
+   ARCHIVO PRINCIPAL CSS - POKÉDEX
+   ======================================== */
+
+/* Importar módulos base */
+@import url('./base/variables.css');
+@import url('./base/reset.css');
+
+/* Importar componentes */
+@import url('./components/header.css');
+@import url('./components/buttons.css');
+@import url('./components/search.css');
+@import url('./components/pokemon-card.css');
+@import url('./components/comparison.css');
+@import url('./components/modal.css');
+@import url('./components/footer.css');
+
+/* Importar tipos de Pokémon */
+@import url('./types/pokemon-types.css');
+
+/* Importar responsive design */
+@import url('./responsive/media-queries.css'); 
