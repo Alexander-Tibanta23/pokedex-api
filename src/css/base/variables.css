@@ -1,0 +1,54 @@
+/* ========================================
+   VARIABLES Y UTILIDADES CSS
+   ======================================== */
+
+/* Variables de colores */
+:root {
+    --primary-color: #ffd700;
+    --primary-gradient: linear-gradient(45deg, #ffd700, #ffed4e);
+    --secondary-color: #2a5298;
+    --background-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    --text-color: #333;
+    --white: #ffffff;
+    --black: #000000;
+    --gray-light: #f8f9fa;
+    --gray: #6c757d;
+    --gray-dark: #495057;
+    
+    /* Colores de botones */
+    --btn-random: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    --btn-favorites: linear-gradient(45deg, #ff69b4, #ff8ac4);
+    --btn-compare: linear-gradient(45deg, #4ecdc4, #6ee7df);
+    --btn-close: linear-gradient(45deg, #6c757d, #8e9aaf);
+    
+    /* Sombras */
+    --shadow-light: 0 4px 15px rgba(255, 215, 0, 0.3);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.2);
+    --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.2);
+    
+    /* Bordes */
+    --border-radius: 25px;
+    --border-radius-small: 10px;
+    --border-radius-large: 50px;
+}
+
+/* Utilidades */
+.hidden {
+    display: none !important;
+}
+
+/* Animaciones */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: calc(200px + 100%) 0; }
+} 
