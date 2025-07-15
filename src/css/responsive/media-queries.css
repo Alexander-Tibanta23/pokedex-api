@@ -1,0 +1,167 @@
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .controls {
+        justify-content: center;
+    }
+    
+    .pokemon-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .pokemon-name {
+        font-size: 2rem;
+    }
+    
+    .comparison-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .pokemon-stats-basic {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-bar {
+        grid-template-columns: 80px 1fr 40px;
+        gap: 0.5rem;
+    }
+    
+    .stat-name {
+        font-size: 0.8rem;
+    }
+    
+    .evolution-container {
+        flex-direction: column;
+    }
+    
+    .evolution-arrow {
+        transform: rotate(90deg);
+        margin: 0.5rem 0;
+    }
+    
+    .modal {
+        max-width: 95vw;
+    }
+    
+    .modal-content {
+        max-height: 85vh;
+    }
+    
+    /* Footer responsive para tablets */
+    .footer-content {
+        gap: 1.5rem;
+    }
+    
+    .footer-title {
+        font-size: 1.4rem;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    .search-box {
+        flex-direction: column;
+        border-radius: 15px;
+    }
+    
+    .search-input {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .search-btn {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+    
+    .pokemon-card {
+        padding: 1rem;
+        margin: 0 1rem;
+    }
+    
+    .pokemon-name {
+        font-size: 1.5rem;
+    }
+    
+    .pokemon-image {
+        max-width: 200px;
+    }
+    
+    .image-buttons {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .modal {
+        max-width: 98vw;
+        margin: 1rem;
+    }
+    
+    .modal-header {
+        padding: 1rem;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .favorites-list {
+        padding: 1rem;
+    }
+    
+    .favorite-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .favorite-item img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .remove-favorite {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+    
+    /* Footer responsive */
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    .footer-title {
+        font-size: 1.3rem;
+    }
+    
+    .footer-description {
+        font-size: 0.85rem;
+    }
+} 
