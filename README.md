@@ -24,19 +24,20 @@ Una Pokédex web interactiva y moderna que consume la PokéAPI para mostrar info
 ### Tecnologías Utilizadas
 - **HTML5**: Estructura semántica y accesible
 - **CSS3**: Diseño moderno con Flexbox, Grid, animaciones y gradientes
-- **JavaScript ES6+**: Funcionalidad completa con async/await y fetch API
+- **JavaScript ES6+**: Funcionalidad completa con async/await, fetch API y módulos ES6
 - **PokéAPI**: Consumo de datos oficiales de Pokémon
 - **Font Awesome**: Iconos modernos y atractivos
 - **Google Fonts**: Tipografía Orbitron para el estilo retro-futurista
 
 ## 🚀 Cómo usar
 
-1. **Abrir la aplicación**: Simplemente abre `index.html` en tu navegador
-2. **Buscar Pokémon**: Escribe el nombre o número del Pokémon en la barra de búsqueda
-3. **Explorar**: Usa el botón "Aleatorio" para descubrir nuevos Pokémon
-4. **Guardar favoritos**: Haz clic en el corazón para agregar a favoritos
-5. **Comparar**: Usa el botón de comparación para comparar dos Pokémon
-6. **Ver evolución**: Explora la cadena evolutiva haciendo clic en las evoluciones
+1. **Iniciar servidor local**: Ejecuta `python -m http.server 8001` en la terminal
+2. **Abrir la aplicación**: Ve a `http://localhost:8001/public/` en tu navegador
+3. **Buscar Pokémon**: Escribe el nombre o número del Pokémon en la barra de búsqueda
+4. **Explorar**: Usa el botón "Aleatorio" para descubrir nuevos Pokémon
+5. **Guardar favoritos**: Haz clic en el corazón para agregar a favoritos
+6. **Comparar**: Usa el botón de comparación para comparar dos Pokémon
+7. **Ver evolución**: Explora la cadena evolutiva haciendo clic en las evoluciones
 
 ## 📱 Funcionalidades Detalladas
 
@@ -87,12 +88,71 @@ Una Pokédex web interactiva y moderna que consume la PokéAPI para mostrar info
 ## 🔧 Estructura del Proyecto
 
 ```
-pokedex-eslint/
-├── index.html          # Estructura principal
-├── styles.css          # Estilos y diseño
-├── script.js           # Funcionalidad JavaScript
-└── README.md           # Documentación
+pokedex-api/
+├── public/
+│   └── index.html
+├── src/
+│   ├── css/
+│   │   ├── main.css (archivo principal que importa todos los módulos)
+│   │   ├── base/
+│   │   │   ├── variables.css (variables CSS y utilidades)
+│   │   │   └── reset.css (reset y configuración base)
+│   │   ├── components/
+│   │   │   ├── header.css (estilos del header)
+│   │   │   ├── buttons.css (estilos de botones)
+│   │   │   ├── search.css (barra de búsqueda)
+│   │   │   ├── pokemon-card.css (tarjeta principal del Pokémon)
+│   │   │   ├── comparison.css (panel de comparación)
+│   │   │   └── modal.css (modales y overlay)
+│   │   ├── types/
+│   │   │   └── pokemon-types.css (estilos de tipos de Pokémon)
+│   │   └── responsive/
+│   │       └── media-queries.css (responsive design)
+│   └── js/
+│       ├── core/
+│       │   └── main.js (punto de entrada de la aplicación)
+│       ├── dom/
+│       │   └── dom.js (referencias y manipulación del DOM)
+│       ├── api/
+│       │   ├── api.js (funciones de comunicación con la API)
+│       │   └── config.js (configuración y constantes)
+│       ├── features/
+│       │   ├── search.js (funciones de búsqueda)
+│       │   ├── favorites.js (lógica de favoritos)
+│       │   ├── comparison.js (lógica de comparación)
+│       │   └── state.js (estado global de la aplicación)
+│       └── ui/
+│           └── ui.js (funciones de interfaz de usuario)
+├── README.md
+└── .gitignore
 ```
+
+### Arquitectura Modular
+
+#### JavaScript Modules (ES6)
+- **`core/main.js`**: Punto de entrada, inicialización y coordinación de módulos
+- **`dom/dom.js`**: Referencias del DOM y funciones de manipulación
+- **`api/config.js`**: Configuración, constantes y endpoints de API
+- **`api/api.js`**: Todas las llamadas a la PokéAPI y manejo de datos
+- **`features/search.js`**: Lógica de búsqueda y filtrado
+- **`features/favorites.js`**: Gestión del sistema de favoritos
+- **`features/comparison.js`**: Lógica de comparación de Pokémon
+- **`features/state.js`**: Estado global y gestión de datos
+- **`ui/ui.js`**: Manipulación del DOM y actualizaciones de interfaz
+
+#### CSS Modules (Modular Architecture)
+- **`main.css`**: Archivo principal que importa todos los módulos CSS
+- **`base/variables.css`**: Variables CSS, colores, sombras y animaciones
+- **`base/reset.css`**: Reset CSS y configuración base del body
+- **`components/`**: Estilos modulares por componente
+  - `header.css`: Estilos del encabezado y navegación
+  - `buttons.css`: Componentes de botones y estados
+  - `search.css`: Interfaz de búsqueda y formularios
+  - `pokemon-card.css`: Tarjetas de Pokémon y estadísticas
+  - `comparison.css`: Panel de comparación
+  - `modal.css`: Diálogos modales y overlay
+- **`types/pokemon-types.css`**: Badges y colores de tipos de Pokémon
+- **`responsive/media-queries.css`**: Media queries y diseño responsive
 
 ## 🌐 APIs Utilizadas
 
@@ -109,40 +169,52 @@ pokedex-eslint/
 
 ## 🎯 Características Técnicas
 
-### JavaScript
-- **ES6+ Features**: Arrow functions, destructuring, template literals
+### JavaScript (Arquitectura Modular ES6)
+- **ES6 Modules**: Import/export para organización modular
 - **Async/Await**: Manejo asíncrono de peticiones
 - **Fetch API**: Peticiones HTTP modernas
 - **LocalStorage**: Persistencia de favoritos
 - **Event Delegation**: Manejo eficiente de eventos
+- **Single Responsibility**: Cada módulo tiene una responsabilidad específica
+- **Error Handling**: Manejo robusto de errores en cada módulo
+- **State Management**: Gestión centralizada del estado de la aplicación
 
-### CSS
+### CSS (Arquitectura Modular)
+- **CSS Variables**: Colores y valores reutilizables centralizados
+- **Modular Structure**: Estilos organizados por componente y funcionalidad
 - **Flexbox & Grid**: Layouts modernos y responsive
-- **CSS Variables**: Colores y valores reutilizables
-- **Animaciones**: Transiciones suaves y keyframes
-- **Gradientes**: Efectos visuales modernos
-- **Media Queries**: Diseño responsive completo
+- **Animaciones**: Transiciones suaves y keyframes optimizados
+- **Gradientes**: Efectos visuales modernos y atractivos
+- **Media Queries**: Diseño responsive completo y optimizado
+- **BEM Methodology**: Convenciones de nomenclatura consistentes
+- **Import System**: Sistema de imports para organización modular
 
 ### HTML
-- **Semántica**: Estructura HTML5 semántica
+- **Semántica**: Estructura HTML5 semántica y accesible
 - **Accesibilidad**: ARIA labels y navegación por teclado
 - **SEO**: Meta tags y estructura optimizada
+- **Modular Scripts**: Carga de módulos JavaScript organizados
+- **Public Directory**: Separación clara entre archivos públicos y código fuente
 
 ## 🚀 Instalación y Uso
 
 ### Requisitos
 - Navegador web moderno (Chrome, Firefox, Safari, Edge)
 - Conexión a internet para consumir la PokéAPI
+- Python 3.x (para servidor local)
 
-### Instalación
+### Instalación y Ejecución
 1. Clona o descarga el proyecto
-2. Abre `index.html` en tu navegador
-3. ¡Disfruta explorando la Pokédex!
+2. Abre una terminal en el directorio del proyecto
+3. Ejecuta: `python -m http.server 8001`
+4. Abre tu navegador y ve a: `http://localhost:8001/public/`
+5. ¡Disfruta explorando la Pokédex!
 
 ### Desarrollo
-- No requiere servidor local
-- Funciona directamente desde el sistema de archivos
-- Compatible con cualquier editor de código
+- **Servidor local requerido**: Para evitar problemas de CORS con módulos ES6
+- **Arquitectura modular**: Fácil mantenimiento y escalabilidad
+- **Separación de responsabilidades**: Código organizado y reutilizable
+- **Compatibilidad**: Funciona con cualquier editor de código moderno
 
 ## 🎮 Funcionalidades Interactivas
 
@@ -155,7 +227,8 @@ pokedex-eslint/
 - **Hover effects**: En botones, tarjetas y elementos interactivos
 - **Loading animations**: Spinner durante las peticiones
 - **Transition effects**: Cambios suaves entre estados
-- **Shimmer effects**: En barras de estadísticas
+- **Shimmer effects**: En barras de estadísticas (25s de duración)
+- **Pulse animations**: En elementos del header
 
 ## 🔮 Futuras Mejoras
 
@@ -166,6 +239,12 @@ pokedex-eslint/
 - [ ] Exportar/importar favoritos
 - [ ] PWA (Progressive Web App)
 - [ ] Más estadísticas y comparaciones
+- [ ] Lazy loading de módulos
+- [ ] Testing unitario para módulos
+- [ ] Optimización de rendimiento
+- [ ] Bundle optimization con Webpack/Vite
+- [ ] TypeScript migration
+- [ ] Component library para reutilización
 
 ## 📄 Licencia
 
