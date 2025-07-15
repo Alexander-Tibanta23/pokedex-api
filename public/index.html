@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex Interactiva</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="stylesheet" href="/src/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header con título y controles principales -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="title">
+                <i class="fas fa-circle"></i>
+                Pokédex
+                <i class="fas fa-circle"></i>
+            </h1>
+            <div class="controls">
+                <button id="randomBtn" class="btn btn-random">
+                    <i class="fas fa-dice"></i> Aleatorio
+                </button>
+                <button id="favoritesBtn" class="btn btn-favorites">
+                    <i class="fas fa-heart"></i> Favoritos
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenedor de contenido principal -->
+    <div class="content-wrapper">
+        <!-- Barra de búsqueda -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar Pokémon por nombre o número..." class="search-input">
+                <button id="searchBtn" class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenedor principal -->
+        <main class="main-container">
+        <!-- Panel de comparación -->
+        <div id="comparisonPanel" class="comparison-panel hidden">
+            <h3>Comparador de Pokémon</h3>
+            <div class="comparison-container">
+                <div class="comparison-pokemon">
+                    <div id="pokemon1" class="comparison-card">
+                        <p>Selecciona un Pokémon</p>
+                    </div>
+                </div>
+                <div class="comparison-pokemon">
+                    <div id="pokemon2" class="comparison-card">
+                        <p>Selecciona un Pokémon</p>
+                    </div>
+                </div>
+            </div>
+            <button id="closeComparison" class="btn btn-close">
+                <i class="fas fa-times"></i> Cerrar
+            </button>
+        </div>
+
+        <!-- Tarjeta principal del Pokémon -->
+        <div id="pokemonCard" class="pokemon-card hidden">
+            <!-- Información básica -->
+            <div class="pokemon-header">
+                <div class="pokemon-info">
+                    <h2 id="pokemonName" class="pokemon-name">Nombre</h2>
+                    <span id="pokemonNumber" class="pokemon-number">#000</span>
+                </div>
+                <div class="pokemon-types" id="pokemonTypes">
+                    <!-- Los tipos se insertarán dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Imagen del Pokémon -->
+            <div class="pokemon-image-container">
+                <img id="pokemonImage" src="" alt="Pokémon" class="pokemon-image">
+                <div class="image-buttons">
+                    <button id="addToFavorites" class="btn btn-favorite">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <button id="comparePokemon" class="btn btn-compare">
+                        <i class="fas fa-balance-scale"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Estadísticas básicas -->
+            <div class="pokemon-stats-basic">
+                <div class="stat-item">
+                    <span class="stat-label">Altura:</span>
+                    <span id="pokemonHeight" class="stat-value">0 m</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Peso:</span>
+                    <span id="pokemonWeight" class="stat-value">0 kg</span>
+                </div>
+            </div>
+
+            <!-- Habilidades -->
+            <div class="pokemon-abilities">
+                <h3>Habilidades</h3>
+                <div id="pokemonAbilities" class="abilities-list">
+                    <!-- Las habilidades se insertarán dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Estadísticas detalladas -->
+            <div class="pokemon-stats-detailed">
+                <h3>Estadísticas</h3>
+                <div id="pokemonStats" class="stats-container">
+                    <!-- Las estadísticas se insertarán dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Cadena evolutiva -->
+            <div class="evolution-chain">
+                <h3>Evolución</h3>
+                <div id="evolutionChain" class="evolution-container">
+                    <!-- La cadena evolutiva se insertará dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de error -->
+        <div id="errorMessage" class="error-message hidden">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p id="errorText">Pokémon no encontrado</p>
+        </div>
+
+        <!-- Loading spinner -->
+        <div id="loadingSpinner" class="loading-spinner hidden">
+            <div class="spinner"></div>
+            <p>Buscando Pokémon...</p>
+        </div>
+
+        <!-- Modal de favoritos -->
+        <div id="favoritesModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Mis Favoritos</h3>
+                    <button id="closeFavorites" class="btn btn-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="favoritesList" class="favorites-list">
+                    <!-- Los favoritos se insertarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </main>
+    </div>
+
+    <!-- Overlay para modales -->
+    <div id="overlay" class="overlay hidden"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3 class="footer-title">
+                    <i class="fas fa-code"></i>
+                    Pokédex Interactiva
+                </h3>
+                <p class="footer-description">
+                    Una aplicación web moderna que consume la PokéAPI para mostrar información detallada de Pokémon con un diseño minimalista inspirado en la Pokédex clásica.
+                </p>
+                <p class="footer-author">Desarrollado por <strong>Alexander Tibanta</strong></p>
+            </div>
+            <div class="footer-social">
+                <a href="https://github.com/Alexander-Tibanta23" target="_blank" rel="noopener noreferrer" class="social-link social-github" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/alexander-tibanta-miranda-6a7b36275/" target="_blank" rel="noopener noreferrer" class="social-link social-linkedin" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://instagram.com/quienesalexander" target="_blank" rel="noopener noreferrer" class="social-link social-instagram" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <!--<a href="https://alexandertibanta-portfolio.com" target="_blank" rel="noopener noreferrer" class="social-link social-portfolio" title="Portfolio">
+                    <i class="fas fa-globe"></i>
+                </a>-->
+            </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Alexander Tibanta. Todos los derechos reservados. | 
+            <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a> | 
+            <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a></p>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/js/core/main.js"></script>
+</body>
+</html> 
